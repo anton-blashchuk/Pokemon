@@ -62,9 +62,34 @@ function includeHTML() {
     }
 };
 
-includeHTML()
-fetchPokemonList((pokemonList) => { 
+fetchPokemonList((pokemonList) => {
     console.log(pokemonList)
+    /* the container all templates will be added to */
     const pokemonContainer = document.getElementById("pokemon_container")
-    //TODO add all pokemons from list
- })
+    /* the template we will clone and populate with data */
+    let cardHtmlTemplate = document.getElementById("card_template")
+    /* Strings to collect and display somewhere */
+    let abilities, allStats
+    //iterate over everything we fetched as of now
+    pokemonList.forEach(element => {
+        allStats = ""
+        abilities = " "
+        //we take template content and will clone it
+        let templateContent = cardHtmlTemplate.content;
+        const templateCopy = templateContent.cloneNode(true); //"true" to preserve children 
+        templateCopy.getElementById("card-title").innerHTML = element.name
+        element.stats.forEach(stat => {
+            allStats += stat.stat.name + ":" + stat.base_stat + " / "
+        })
+        allStats = allStats.substring(0, allStats.length - 2)
+        element.abilities.forEach(ability => {
+            abilities += " :" + ability.ability.name + ""
+        })
+        //update extra text with abilities
+        templateCopy.getElementById("card-extra-text").innerHTML = abilities
+        //update image
+        templateCopy.getElementById("card-img").src = element.sprites.front_default
+        //append to main container
+        pokemonContainer.appendChild(templateCopy);
+    });
+})

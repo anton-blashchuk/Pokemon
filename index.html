@@ -10,29 +10,18 @@
 
 <body>
     <div id="pokemon_container" class="card-container">
-        <div w3-include-html="card.html" name="include" id="id1"></div>
-        <div w3-include-html="card.html" name="include" id="id2"></div>
-        <!--
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        <div w3-include-html="card.html"></div>
-        -->
+        <template id="card_template">
+            <div class="card">
+                <div class="card-title" id="card-title">
+                    <h4><b><slot name="name">Name of the pokemon</slot></b></h4>
+                </div>
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Avatar"
+                    class="card-img" id="card-img">
+                <div class="card-extra-text" id="card-extra-text">
+                    <p><slot name="extra-text"></slot>Traits or something</slot></p>
+                </div>
+            </div>
+        </template>
     </div>
 </body>
 

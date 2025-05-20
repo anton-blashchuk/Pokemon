@@ -3,13 +3,17 @@
 
 <body>
     <div class="card">
-        <div class="card-title">
-            <h4><b>Bulbasaur</b></h4>
+        <div class="card-title" id="card-title">
+            <h4><b>
+                    <slot name="name">Name of the pokemon</slot>
+                </b></h4>
         </div>
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Avatar"
-            class="card-img">
-        <div class="card-extra-text">
-            <p>Cool one</p>
+            class="card-img" id="card-img">
+        <div class="card-extra-text" id="card-extra-text">
+            <p>
+                <slot name="extra-text"></slot>Traits or something</slot>
+            </p>
         </div>
     </div>
 </body>
