@@ -72,24 +72,48 @@ fetchPokemonList((pokemonList) => {
     let abilities, allStats
     //iterate over everything we fetched as of now
     pokemonList.forEach(element => {
-        allStats = ""
         abilities = " "
         //we take template content and will clone it
         let templateContent = cardHtmlTemplate.content;
         const templateCopy = templateContent.cloneNode(true); //"true" to preserve children 
         templateCopy.getElementById("card-title").innerHTML = element.name
-        element.stats.forEach(stat => {
-            allStats += stat.stat.name + ":" + stat.base_stat + " / "
-        })
-        allStats = allStats.substring(0, allStats.length - 2)
         element.abilities.forEach(ability => {
             abilities += " :" + ability.ability.name + ""
         })
         //update extra text with abilities
         templateCopy.getElementById("card-extra-text").innerHTML = abilities
+        const image = templateCopy.getElementById("card-img");
         //update image
-        templateCopy.getElementById("card-img").src = element.sprites.front_default
+        image.src = element.sprites.front_default
+        image.parentNode.addEventListener("click", () => showModal(element));
         //append to main container
         pokemonContainer.appendChild(templateCopy);
-    });
+    })
 })
+
+
+let modal = document.getElementById("details_modal")
+let closeButton = document.getElementById("close");
+
+function showModal(element) {
+    let allStats = ""
+    document.getElementById("modal-title").innerHTML = element.name
+    element.stats.forEach(stat => {
+        allStats += stat.stat.name + ":" + stat.base_stat + " / "
+    })
+    document.getElementById("modal-img").src = element.sprites.front_default
+    document.getElementById("modal-extra-text").innerHTML = allStats
+    modal.style.display = "block"
+}
+
+function hideModal() {
+    modal.style.display = "none"
+}
+
+closeButton.onclick = hideModal
+// Close the modal when clicking outside of the modal content
+window.addEventListener("click", (event) => {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});

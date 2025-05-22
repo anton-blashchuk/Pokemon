@@ -9,20 +9,47 @@
 </head>
 
 <body>
+
+    <div id="details_modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="close" class="close">&times;</span>
+            <div id="modal-title">
+                <h4><b>
+                        <slot name="name">Name of the pokemon</slot>
+                    </b>
+                    <h4>
+            </div>
+            <img id="modal-img" alt="Avatar" class="card-img"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+            <div class="card-extra-text" id="modal-extra-text">
+                <p>
+                    <slot name="extra-text"></slot>Traits or something</slot>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div id="pokemon_container" class="card-container">
         <template id="card_template">
             <div class="card">
                 <div class="card-title" id="card-title">
-                    <h4><b><slot name="name">Name of the pokemon</slot></b></h4>
+                    <h4><b>
+                            <slot name="name">Name of the pokemon</slot>
+                        </b></h4>
                 </div>
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Avatar"
                     class="card-img" id="card-img">
                 <div class="card-extra-text" id="card-extra-text">
-                    <p><slot name="extra-text"></slot>Traits or something</slot></p>
+                    <p>
+                        <slot name="extra-text"></slot>Traits or something</slot>
+                    </p>
                 </div>
             </div>
         </template>
     </div>
+
+    <!-- TODO add modal here -->
 </body>
 
 </html>
